@@ -122,6 +122,8 @@ public:
     void Save();
 #ifdef G2_USE_HASH_MAP
     static Device* LastUsed();
+#else
+    static int LastUsed();
 #endif
 
 #ifdef G2_USE_X11
