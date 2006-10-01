@@ -36,7 +36,7 @@ namespace g2 {
         return (color<0.0) && (color>1.0);
     }
 
-Device& operator>> (Device &din, Ink ink) throw( g2exception )
+Device& operator>> (Device &din, Ink &ink) throw( g2exception )
 {
     if(din.m_deviceType!=VD)
         throw g2exception("Ink must come from physical device.", 
@@ -52,7 +52,7 @@ Device& operator>> (Device &din, Ink ink) throw( g2exception )
     return din;
 }
 
-Device& operator<< (Device &dout, Pen pen)
+Device& operator<< (Device &dout, Pen &pen)
 {
     g2_pen(dout.m_device, pen.m_ink.color);
     return dout;

@@ -39,7 +39,7 @@ enum ButtonStates {
 	@author Rene Horn <the.rhorn@gmail.com>
 */
 class Mouse{
-    friend Device& operator>> (Device &din, Mouse mouse);
+    friend Device& operator>> (Device &din, Mouse &mouse);
 public:
     Mouse();
 
@@ -61,7 +61,7 @@ protected:
     unsigned int m_button;
 };
 
-Device& operator>> (Device &din, Mouse mouse);
+Device& operator>> (Device &din, Mouse &mouse);
 
 typedef Mouse Pointer;
 

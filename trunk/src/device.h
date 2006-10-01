@@ -82,9 +82,9 @@ class Mouse;
     @author Rene Horn <the.rhorn@gmail.com>
 */
 class Device {
-    friend Device& operator>> (Device &din, Mouse mouse);
-    friend Device& operator>> (Device &din, Ink ink) throw( g2exception );
-    friend Device& operator<< (Device &dout, Pen pen);
+    friend Device& operator>> (Device &din, Mouse &mouse);
+    friend Device& operator>> (Device &din, Ink &ink) throw( g2exception );
+    friend Device& operator<< (Device &dout, Pen &pen);
     friend Device& operator<< (Device& dout, const Point& point);
     friend Device& operator<< (Device& dout, const Shape& shape);
 public:
