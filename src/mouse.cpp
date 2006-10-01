@@ -21,10 +21,15 @@
 
 namespace g2 {
 
-Device& operator>> (Device &din, Mouse mouse)
+Device& operator>> (Device &din, Mouse &mouse)
 {
-    g2_query_pointer(din.m_device, &mouse.m_coord.x, &mouse.m_coord.y,
-                     &mouse.m_button);
+    double x, y;
+    unsigned int button;
+    g2_query_pointer(din.m_device, &x, &y,
+                     &button);
+    mouse.m_coord.x=x;
+    mouse.m_coord.y=y;
+    mouse.m_button=button;
     return din;
 }
 
