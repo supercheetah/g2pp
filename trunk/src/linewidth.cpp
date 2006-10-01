@@ -17,41 +17,25 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#include "shape.h"
-#include "device.h"
+#include "linewidth.h"
 
 namespace g2 {
 
-Device& operator <<(Device& dout, const Point& point)
+LineWidth::LineWidth(double width)
+ : Manipulator()
 {
-    switch(point.ptype) {
-        case NORMAL_PT:
-            g2_plot(dout.m_device, point.x, point.y);
-            break;
-        case QUASIPIXEL:
-            g2_plot_QP(dout.m_device, point.x, point.y);
-            break;
-        case RELATIVE_PT:
-            g2_plot_r(dout.m_device, point.x, point.y);
-            break;
-    }
-    return dout;
+    m_width=width;
 }
 
-Device& operator<<(Device& dout, const Shape& shape)
-{
-    shape.DrawToDevice( dout.m_device);
-    return dout;
-}
 
-Shape::Shape()
+LineWidth::~LineWidth()
 {
 }
 
 
-Shape::~Shape()
+void LineWidth::Manipulate(int dev)
 {
+    g2_set_line_width(dev, m_width);
 }
-
 
 } //namespace g2

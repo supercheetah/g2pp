@@ -10,7 +10,7 @@
       <keyword>C++</keyword>
       <keyword>Code</keyword>
     </keywords>
-    <versioncontrol>kdevsubversion</versioncontrol>
+    <versioncontrol/>
     <ignoreparts/>
     <projectdirectory>.</projectdirectory>
     <absoluteprojectpath>false</absoluteprojectpath>
@@ -25,6 +25,13 @@
       <mainprogram>src/g2pp</mainprogram>
       <terminal>true</terminal>
       <directoryradio>executable</directoryradio>
+      <runarguments>
+        <g2pp/>
+      </runarguments>
+      <customdirectory>/</customdirectory>
+      <programargs/>
+      <autocompile>true</autocompile>
+      <envvars/>
     </run>
     <configurations>
       <optimized>
@@ -57,6 +64,12 @@
         <envvar value="1" name="WANT_AUTOCONF_2_5" />
         <envvar value="1" name="WANT_AUTOMAKE_1_6" />
       </envvars>
+      <abortonerror>true</abortonerror>
+      <runmultiplejobs>false</runmultiplejobs>
+      <numberofjobs>1</numberofjobs>
+      <dontact>false</dontact>
+      <makebin/>
+      <prio>0</prio>
     </make>
   </kdevautoproject>
   <kdevdoctreeview>
@@ -190,10 +203,10 @@
       <runGdbScript/>
       <breakonloadinglibs>true</breakonloadinglibs>
       <separatetty>false</separatetty>
-      <floatingtoolbar>false</floatingtoolbar>
+      <floatingtoolbar>true</floatingtoolbar>
     </general>
     <display>
-      <staticmembers>false</staticmembers>
+      <staticmembers>true</staticmembers>
       <demanglenames>true</demanglenames>
       <outputradix>10</outputradix>
     </display>

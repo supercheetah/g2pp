@@ -17,41 +17,34 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#include "shape.h"
-#include "device.h"
+#include "background.h"
 
 namespace g2 {
 
-Device& operator <<(Device& dout, const Point& point)
+Background::Background(const Ink &color)
+ : Manipulator()
 {
-    switch(point.ptype) {
-        case NORMAL_PT:
-            g2_plot(dout.m_device, point.x, point.y);
-            break;
-        case QUASIPIXEL:
-            g2_plot_QP(dout.m_device, point.x, point.y);
-            break;
-        case RELATIVE_PT:
-            g2_plot_r(dout.m_device, point.x, point.y);
-            break;
-    }
-    return dout;
+    m_color=color.color;
 }
 
-Device& operator<<(Device& dout, const Shape& shape)
-{
-    shape.DrawToDevice( dout.m_device);
-    return dout;
-}
 
-Shape::Shape()
+Background::~Background()
 {
 }
 
 
-Shape::~Shape()
+void Background::Manipulate(int dev)
 {
+    g2_set_background(dev, m_color);
+}
+
 }
 
 
-} //namespace g2
+/*!
+    \fn g2::Background::Background(int color)
+ */
+ g2::Background::Background(int color)
+{
+    m_color=color;
+}

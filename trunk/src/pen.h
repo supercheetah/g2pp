@@ -43,11 +43,11 @@ class Device;
 Device& operator>>(Device &din, Ink &ink) throw( g2exception );
 
 /**
-	@author Rene Horn <the.rhorn@gmail.com>
+    @author Rene Horn <the.rhorn@gmail.com>
 */
 class Pen{
     friend void operator<<(Pen &pen, Ink &ink);
-    friend Device& operator<< (Device &dout, Pen &pen);
+    friend Device& operator<< (Device &dout, Pen &pen) throw( g2exception );
 public:
     Pen();
     ~Pen();
@@ -56,11 +56,10 @@ public:
 protected:
     Ink m_ink;
     bool m_isEmpty;
-    int m_numDashLengths;
-    double *m_dashLengths;
 };
 
-Device& operator<< (Device &dout, Pen &pen);
+Device& operator<< (Device &dout, Pen &pen) throw( g2exception );
+void operator<<(Pen &pen, Ink &ink);
 
 }
 

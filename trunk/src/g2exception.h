@@ -29,6 +29,8 @@ enum ExceptionValues
     NONATTACHABLE_DEVICE,
     NOT_ATTACHED,
     IS_ATTACHED,
+    INVALID_DASH_COUNT,
+    EMPTY_PEN,
 };
 
 /**

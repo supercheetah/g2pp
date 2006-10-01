@@ -19,6 +19,7 @@
  ***************************************************************************/
 
 #include <device.h>
+#include <pen.h>
 #include <arc.h>
 #include <circle.h>
 #include <ellipse.h>
@@ -28,3 +29,9 @@
 #include <polygon.h>
 #include <rectangle.h>
 #include <triangle.h>
+#include <manipulator.h>
+#include <fontsize.h>
+#include <linewidth.h>
+#include <background.h>
+#include <dashes.h>
+#include <quasipixelmanip.h>

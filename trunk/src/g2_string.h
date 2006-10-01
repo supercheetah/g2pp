@@ -20,6 +20,7 @@
 #ifndef G2G2_STRING_H
 #define G2G2_STRING_H
 
+#include <g2exception.h>
 #include <shape.h>
 
 namespace g2 {
@@ -38,12 +39,16 @@ public:
     g2_String(Point point, const char *text, bool filled=false);
     g2_String(Point point, const char *text, size_t textLength,
               bool filled=false);
+    void FontSize(double font_size);
+    double FontSize() throw( g2exception );
 
 protected:
     virtual void DrawToDevice(int dev) const;
+    void CommonInit();
     Point m_point;
     char *m_text;
     size_t m_textLen;
+    double m_fontSize;
 }; //g2_String
 
 } //g2
