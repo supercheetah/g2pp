@@ -17,41 +17,31 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#include "shape.h"
-#include "device.h"
+#ifndef G2DASHES_H
+#define G2DASHES_H
+
+#include <manipulator.h>
 
 namespace g2 {
 
-Device& operator <<(Device& dout, const Point& point)
+/**
+Sets line dashes.
+
+	@author Rene Horn <the.rhorn@gmail.com>
+*/
+class Dashes : public Manipulator
 {
-    switch(point.ptype) {
-        case NORMAL_PT:
-            g2_plot(dout.m_device, point.x, point.y);
-            break;
-        case QUASIPIXEL:
-            g2_plot_QP(dout.m_device, point.x, point.y);
-            break;
-        case RELATIVE_PT:
-            g2_plot_r(dout.m_device, point.x, point.y);
-            break;
-    }
-    return dout;
+public:
+    Dashes(int num_dash_lengths, double *dash_lengths);
+
+    virtual ~Dashes();
+
+protected:
+    virtual void Manipulate(int dev);
+    int m_numDashLengths;
+    double *m_dashLengths;
+};
+
 }
 
-Device& operator<<(Device& dout, const Shape& shape)
-{
-    shape.DrawToDevice( dout.m_device);
-    return dout;
-}
-
-Shape::Shape()
-{
-}
-
-
-Shape::~Shape()
-{
-}
-
-
-} //namespace g2
+#endif

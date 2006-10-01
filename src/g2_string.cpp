@@ -37,6 +37,8 @@ g2_String::g2_String(double x, double y, const char *text, bool filled)
 #endif
     m_text=new char[m_textLen];
     strncpy(m_text, text, m_textLen);
+    
+    CommonInit();
 }
 
 
@@ -65,6 +67,8 @@ void g2_String::DrawToDevice(int dev) const
     m_textLen=textLength;
     m_text=new char[m_textLen];
     strncpy(m_text, text, m_textLen);
+    
+    CommonInit();
 }
 
 
@@ -81,6 +85,8 @@ void g2_String::DrawToDevice(int dev) const
 #endif
     m_text=new char[m_textLen];
     strncpy(m_text, text, m_textLen);
+    
+    CommonInit();
 }
 
 
@@ -95,4 +101,23 @@ void g2_String::DrawToDevice(int dev) const
     m_textLen=textLength;
     m_text=new char[m_textLen];
     strncpy(m_text, text, m_textLen);
+    
+    CommonInit();
+}
+
+
+/*!
+    \fn g2::g2_String::FontSize(double font_size)
+ */
+void g2::g2_String::FontSize(double font_size)
+{
+    m_fontSize=font_size;
+}
+
+
+/*!
+    \fn g2::g2_String::CommonInit()
+ */
+void g2::g2_String::CommonInit()
+{
 }

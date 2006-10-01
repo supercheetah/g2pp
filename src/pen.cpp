@@ -20,12 +20,7 @@
 #include "pen.h"
 #include "device.h"
 
-#ifdef DEBUG
-#  include <cassert>
-#  include <iostream>
-using std::cerr;
-using std::endl;
-#endif
+#include <cstring>
 
 #define COLORERR(color) #color " out of range"
 
@@ -52,15 +47,25 @@ Device& operator>> (Device &din, Ink &ink) throw( g2exception )
     return din;
 }
 
-Device& operator<< (Device &dout, Pen &pen)
+Device& operator<< (Device &dout, Pen &pen) throw( g2exception )
 {
+    if(pen.m_isEmpty)
+        throw g2exception("Pen is empty!  Cannot use.", EMPTY_PEN);
+    
     g2_pen(dout.m_device, pen.m_ink.color);
+    
     return dout;
+}
+
+void operator<<(Pen &pen, Ink &ink)
+{
+    pen.m_ink=ink;
+    pen.m_isEmpty=false;
 }
 
 Pen::Pen()
 {
-    m_isEmpty=true;
+    m_isEmpty = true;
 }
 
 
@@ -79,3 +84,4 @@ bool g2::Pen::IsEmpty() const
 {
     return m_isEmpty;
 }
+

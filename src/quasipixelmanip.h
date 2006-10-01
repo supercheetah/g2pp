@@ -17,41 +17,29 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#include "shape.h"
-#include "device.h"
+#ifndef G2QUASIPIXELMANIP_H
+#define G2QUASIPIXELMANIP_H
+
+#include <manipulator.h>
 
 namespace g2 {
 
-Device& operator <<(Device& dout, const Point& point)
+/**
+	@author Rene Horn <the.rhorn@gmail.com>
+*/
+class QuasiPixelManip : public Manipulator
 {
-    switch(point.ptype) {
-        case NORMAL_PT:
-            g2_plot(dout.m_device, point.x, point.y);
-            break;
-        case QUASIPIXEL:
-            g2_plot_QP(dout.m_device, point.x, point.y);
-            break;
-        case RELATIVE_PT:
-            g2_plot_r(dout.m_device, point.x, point.y);
-            break;
-    }
-    return dout;
-}
+public:
+    QuasiPixelManip(double size, QPshape shape);
 
-Device& operator<<(Device& dout, const Shape& shape)
-{
-    shape.DrawToDevice( dout.m_device);
-    return dout;
-}
+    virtual ~QuasiPixelManip();
 
-Shape::Shape()
-{
-}
-
-
-Shape::~Shape()
-{
-}
-
+protected:
+    virtual void Manipulate(int dev);
+    double m_size;
+    QPshape m_shape;
+};
 
 } //namespace g2
+
+#endif

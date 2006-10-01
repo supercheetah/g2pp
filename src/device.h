@@ -26,7 +26,6 @@ using __gnu_cxx::hash_map;
 #endif
 
 #include <g2.h>
-#include <pen.h>
 #include <g2exception.h>
 
 #ifdef G2_USE_FIG
@@ -77,6 +76,9 @@ enum DeviceType {
 struct Point;
 class Shape;
 class Mouse;
+class Pen;
+class Manipulator;
+struct Ink;
 
 /**
     @author Rene Horn <the.rhorn@gmail.com>
@@ -84,9 +86,10 @@ class Mouse;
 class Device {
     friend Device& operator>> (Device &din, Mouse &mouse);
     friend Device& operator>> (Device &din, Ink &ink) throw( g2exception );
-    friend Device& operator<< (Device &dout, Pen &pen);
+    friend Device& operator<< (Device &dout, Pen &pen) throw( g2exception );
     friend Device& operator<< (Device& dout, const Point& point);
     friend Device& operator<< (Device& dout, const Shape& shape);
+    friend Device& operator<< (Device &device, Manipulator &manipulator);
 public:
 //start: c'tor
 #if defined G2_USE_FIG || defined G2_USE_PS
@@ -153,7 +156,6 @@ public:
 protected:
     int m_device;
     DeviceType m_deviceType;
-    Pen m_pen;
     bool m_isAutoflush;
     void CommonInit();
 #ifdef G2_USE_HASH_MAP

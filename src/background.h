@@ -17,41 +17,30 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#include "shape.h"
-#include "device.h"
+#ifndef G2BACKGROUND_H
+#define G2BACKGROUND_H
+
+#include <manipulator.h>
+#include <pen.h>
 
 namespace g2 {
 
-Device& operator <<(Device& dout, const Point& point)
+/**
+	@author Rene Horn <the.rhorn@gmail.com>
+*/
+class Background : public Manipulator
 {
-    switch(point.ptype) {
-        case NORMAL_PT:
-            g2_plot(dout.m_device, point.x, point.y);
-            break;
-        case QUASIPIXEL:
-            g2_plot_QP(dout.m_device, point.x, point.y);
-            break;
-        case RELATIVE_PT:
-            g2_plot_r(dout.m_device, point.x, point.y);
-            break;
-    }
-    return dout;
+public:
+    Background(const Ink &color);
+
+    virtual ~Background();
+    Background(int color);
+
+protected:
+    virtual void Manipulate(int dev);
+    int m_color;
+};
+
 }
 
-Device& operator<<(Device& dout, const Shape& shape)
-{
-    shape.DrawToDevice( dout.m_device);
-    return dout;
-}
-
-Shape::Shape()
-{
-}
-
-
-Shape::~Shape()
-{
-}
-
-
-} //namespace g2
+#endif

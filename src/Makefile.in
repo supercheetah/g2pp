@@ -62,7 +62,8 @@ LTLIBRARIES = $(lib_LTLIBRARIES)
 libg2___la_LIBADD =
 am_libg2___la_OBJECTS = arc.lo circle.lo device.lo ellipse.lo mouse.lo \
 	pen.lo shape.lo rectangle.lo triangle.lo g2_string.lo line.lo \
-	g2exception.lo polygon.lo
+	g2exception.lo polygon.lo manipulator.lo dashes.lo fontsize.lo \
+	quasipixelmanip.lo background.lo linewidth.lo
 libg2___la_OBJECTS = $(am_libg2___la_OBJECTS)
 binPROGRAMS_INSTALL = $(INSTALL_PROGRAM)
 PROGRAMS = $(bin_PROGRAMS)
@@ -197,16 +198,18 @@ INCLUDES = $(all_includes)
 g2pp_LDFLAGS = $(all_libraries) 
 lib_LTLIBRARIES = libg2++.la
 libg2___la_SOURCES = arc.cpp circle.cpp device.cpp ellipse.cpp mouse.cpp \
-				pen.cpp shape.cpp rectangle.cpp triangle.cpp g2_string.cpp line.cpp \
-		g2exception.cpp polygon.cpp
+	pen.cpp shape.cpp rectangle.cpp triangle.cpp g2_string.cpp line.cpp \
+	g2exception.cpp polygon.cpp manipulator.cpp dashes.cpp fontsize.cpp quasipixelmanip.cpp \
+	background.cpp linewidth.cpp
 
 include_HEADERS = arc.h circle.h device.h ellipse.h mouse.h pen.h rectangle.h \
 			shape.h triangle.h g2_string.h g2exception.h line.h polygon.h g2++.h
 
 noinst_HEADERS = arc.h circle.h device.h ellipse.h mouse.h pen.h rectangle.h \
-					shape.h triangle.h g2_string.h line.h g2exception.h polygon.h g2++.h
+	shape.h triangle.h g2_string.h line.h g2exception.h polygon.h g2++.h \
+	manipulator.h dashes.h fontsize.h quasipixelmanip.h background.h linewidth.h
 
-g2pp_LDADD = $(top_builddir)/src/libg2++.la
+g2pp_LDADD = $(top_builddir)/src/libg2++.la -lgd -lX11 -lg2
 all: all-am
 
 .SUFFIXES:
@@ -308,16 +311,22 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/arc.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/background.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/circle.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/dashes.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/device.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ellipse.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/fontsize.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/g2_string.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/g2exception.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/g2pp.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/line.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/linewidth.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/manipulator.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/mouse.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/pen.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/polygon.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/quasipixelmanip.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/rectangle.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/shape.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/triangle.Plo@am__quote@
