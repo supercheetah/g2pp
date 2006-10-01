@@ -1,0 +1,19 @@
+Source/library stuff:
+
+ - Add a line dash interface to Pen
+   -> See g2_set_dash
+ - Add a line width interface to Pen
+   -> See g2_set_line_width
+ - Add a font size interface to g2_String
+   -> See g2_set_font_size
+ - Add a QuasiPixel size interface to Point
+   -> See g2_set_QP
+ - Add a background color interface to Device(?)--Device might not be the proper place for this
+   -> See g2_set_background
+ - Add color allocation interface to Device or maybe Ink
+   -> See g2_allocate_basic_colors, g2_clear_palette, and g2_reset_palette
+
+Package/Installation stuff:
+
+ - Get the header files to install into $PREFIX/include/g2++
+ - Perhaps, somehow, get the installer to symlink g2++.h to g2++
