@@ -1,0 +1,9 @@
+This library doesn't have much in the way of dependencies, except for
+g2 and whatever it's dependent upon.
+
+Obviously, this means that you need the g2 library installed.  To get
+it, go here: http://g2.sourceforge.net/
+
+Once you've done that, then you can run configure, make, and make install!
+
+Rene Horn                 -- the.rhorn at gmail . com
