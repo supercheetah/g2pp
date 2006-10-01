@@ -1,0 +1,21 @@
+AC_INIT(configure.in)
+
+AM_CONFIG_HEADER(config.h)
+AM_INIT_AUTOMAKE(g2pp, 0.1)
+
+AC_LANG_CPLUSPLUS
+AC_PROG_CXX
+AC_PROG_INSTALL
+AC_PROG_LN_S
+AC_PROG_MAKE_SET
+AC_PROG_RANLIB
+AM_PROG_LIBTOOL
+
+AC_C_CONST
+AC_TYPE_SIZE_T
+AC_HEADER_STDBOOL
+
+AC_CHECK_HEADERS(g2.h, ,AC_MSG_ERROR("libg2 header not found!  Get it here: http://g2.sourceforge.net/"))
+AC_HAVE_LIBRARY(g2, , AC_MSG_ERROR("libg2 not found!  Get it here: http://g2.sourceforge.net/"))
+
+AC_OUTPUT(Makefile src/Makefile)
