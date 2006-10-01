@@ -42,6 +42,14 @@ Device* Device::LastUsed()
 {
     return GlobalTracker[g2_ld()];
 }
+#else
+/*!
+    \fn g2::Device::LastUsed()
+ */
+int g2::Device::LastUsed()
+{
+    return g2_ld();
+}
 #endif
 
 #if defined G2_USE_FIG || defined G2_USE_PS
