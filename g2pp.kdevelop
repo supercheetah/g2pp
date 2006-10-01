@@ -10,7 +10,7 @@
       <keyword>C++</keyword>
       <keyword>Code</keyword>
     </keywords>
-    <versioncontrol/>
+    <versioncontrol>kdevsubversion</versioncontrol>
     <ignoreparts/>
     <projectdirectory>.</projectdirectory>
     <absoluteprojectpath>false</absoluteprojectpath>
@@ -18,20 +18,13 @@
   </general>
   <kdevautoproject>
     <general>
-      <activetarget>src/g2pp</activetarget>
+      <activetarget>src/libg2++.la</activetarget>
       <useconfiguration>debug</useconfiguration>
     </general>
     <run>
       <mainprogram>src/g2pp</mainprogram>
       <terminal>true</terminal>
       <directoryradio>executable</directoryradio>
-      <runarguments>
-        <g2pp/>
-      </runarguments>
-      <customdirectory>/</customdirectory>
-      <programargs/>
-      <autocompile>true</autocompile>
-      <envvars/>
     </run>
     <configurations>
       <optimized>
@@ -64,12 +57,6 @@
         <envvar value="1" name="WANT_AUTOCONF_2_5" />
         <envvar value="1" name="WANT_AUTOMAKE_1_6" />
       </envvars>
-      <abortonerror>true</abortonerror>
-      <runmultiplejobs>false</runmultiplejobs>
-      <numberofjobs>1</numberofjobs>
-      <dontact>false</dontact>
-      <makebin/>
-      <prio>0</prio>
     </make>
   </kdevautoproject>
   <kdevdoctreeview>
@@ -215,28 +202,4 @@
     <customArguments/>
     <customTagfilePath/>
   </ctagspart>
-  <dist>
-    <custom>false</custom>
-    <bzip>false</bzip>
-    <archname/>
-    <appname>g2pp.kdevelop</appname>
-    <version>0.1</version>
-    <release/>
-    <vendor/>
-    <licence>LGPL</licence>
-    <summary/>
-    <group/>
-    <packager/>
-    <description/>
-    <changelog/>
-    <devpackage>false</devpackage>
-    <docspackage>false</docspackage>
-    <appicon>false</appicon>
-    <arch>0</arch>
-    <genHTML>false</genHTML>
-    <useRPM>false</useRPM>
-    <ftpkde>false</ftpkde>
-    <appskde>false</appskde>
-    <url/>
-  </dist>
 </kdevelop>
