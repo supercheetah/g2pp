@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2006 by Rene Horn                                       *
- *   the.rhorn@gmail.com                                                   *
+ *   Copyright (C) 2006 by Rene Horn   *
+ *   the.rhorn@gmail.com   *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU Library General Public License as       *
@@ -17,8 +17,8 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#ifndef G2ELLIPSE_H
-#define G2ELLIPSE_H
+#ifndef G2MULTIPOINTSHAPE_H
+#define G2MULTIPOINTSHAPE_H
 
 #include <shape.h>
 
@@ -27,20 +27,21 @@ namespace g2 {
 /**
     @author Rene Horn <the.rhorn@gmail.com>
 */
-class Ellipse : public Shape
+class MultiPointShape : public Shape
 {
 public:
-    Ellipse(double x, double y, double radiusX, double radiusY,
-            bool filled=false);
+    MultiPointShape(int num_points, Point *points);
 
-    virtual ~Ellipse();
-    Ellipse(Point point, double radiusX, double radiusY, bool filled=false);
-    Ellipse(Point point, Point radii, bool filled=false);
+    virtual ~MultiPointShape();
 
 protected:
-    virtual void DrawToDevice(int dev) const;
-    Point m_point, m_radii;
-    double m_filled;
+    virtual void DrawToDevice(int dev) const = 0;
+    void CopyPointsToBuffer() const;
+    int m_numPoints;
+    Point *m_points;
+
+    static double *m_pointsBuffer;
+    static size_t m_refCount;
 };
 
 }

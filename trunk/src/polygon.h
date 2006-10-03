@@ -21,34 +21,30 @@
 #define G2POLYGON_H
 
 #include <shape.h>
+#include <multipointshape.h>
 
 namespace g2 {
 
 typedef enum {
-    NormalPoly,
-    PolyLine,
-    FilledPoly
+    NORMAL_POLY,
+    POLY_LINE,
+    FILLED_POLY
 } PolygonType;
 
 /**
-	@author Rene Horn <the.rhorn@gmail.com>
+    @author Rene Horn <the.rhorn@gmail.com>
 */
-class Polygon : public Shape
+class Polygon : public MultiPointShape
 {
 public:
-    Polygon(Point *pt_list, size_t num_points, PolygonType poly_type,
-            bool deletePoints=false);
+    Polygon(Point *points, size_t num_points, PolygonType poly_type);
 
     virtual ~Polygon();
 
 protected:
     virtual void DrawToDevice(int dev) const;
-    bool m_deletePoints;
-    static double *m_pointsBuffer;
-    static size_t m_refCount;
     PolygonType m_polyType;
-    Point *m_points;
-    size_t m_pointCount;
+
 };
 
 }

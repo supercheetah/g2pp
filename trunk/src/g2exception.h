@@ -31,6 +31,7 @@ enum ExceptionValues
     IS_ATTACHED,
     INVALID_DASH_COUNT,
     EMPTY_PEN,
+    INVALID_SPLINE
 };
 
 /**

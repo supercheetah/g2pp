@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2006 by Rene Horn                                       *
- *   the.rhorn@gmail.com                                                   *
+ *   Copyright (C) 2006 by Rene Horn   *
+ *   the.rhorn@gmail.com   *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU Library General Public License as       *
@@ -17,32 +17,49 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#ifndef G2ELLIPSE_H
-#define G2ELLIPSE_H
+#ifndef G2SPLINE_H
+#define G2SPLINE_H
 
 #include <shape.h>
+#include <g2exception.h>
+#include <multipointshape.h>
 
 namespace g2 {
+
+typedef enum {
+    NORMAL_SPLINE,
+    B_SPLINE,
+    FILLED_SPLINE,
+    FILLED_B_SPLINE,
+    RASPIN,
+    FILLED_RASPIN,
+    PARA_3,
+    FILLED_PARA_3,
+    PARA_5,
+    FILLED_PARA_5
+} SplineType;
 
 /**
     @author Rene Horn <the.rhorn@gmail.com>
 */
-class Ellipse : public Shape
+class Spline : public MultiPointShape
 {
 public:
-    Ellipse(double x, double y, double radiusX, double radiusY,
-            bool filled=false);
+    Spline(int num_points, Point *points, int num_interpolated_points, 
+           SplineType spline_type=NORMAL_SPLINE) throw( g2exception );
 
-    virtual ~Ellipse();
-    Ellipse(Point point, double radiusX, double radiusY, bool filled=false);
-    Ellipse(Point point, Point radii, bool filled=false);
-
+    virtual ~Spline();
+    Spline(int num_points, Point *points, SplineType spline_type=PARA_3) 
+            throw( g2exception );
+    Spline(int num_points, Point *points, double tension, 
+           SplineType spline_type=RASPIN) throw( g2exception );
 protected:
     virtual void DrawToDevice(int dev) const;
-    Point m_point, m_radii;
-    double m_filled;
+    int m_numInterpolatedPoints;
+    double m_tension;
+    SplineType m_splineType;
 };
 
-}
+} //namespace g2
 
 #endif
