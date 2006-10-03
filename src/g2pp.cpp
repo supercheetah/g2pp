@@ -28,6 +28,10 @@
 
 using namespace std;
 
+#ifndef G2_USE_X11
+#define G2_USE_X11
+#endif
+
 #include <g2++.h>
 using namespace g2;
 

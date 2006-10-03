@@ -22,55 +22,34 @@
 #include <cstdlib>
 
 namespace g2 {
-
-    double *Polygon::m_pointsBuffer=NULL;
-    size_t Polygon::m_refCount=0;
     
-Polygon::Polygon(Point *pt_list, size_t num_points, PolygonType poly_type, 
-                    bool deletePoints)
- : Shape()
+Polygon::Polygon(Point *points, size_t num_points, PolygonType poly_type)
+ : MultiPointShape(num_points, points)
 {
-    m_points=pt_list;
-    m_pointCount=num_points;
-    m_deletePoints=deletePoints;
     m_polyType=poly_type;
-    m_refCount++;
 }
 
 
 Polygon::~Polygon()
 {
-    if(m_deletePoints)
-        delete [] m_points;
-    m_refCount--;
-    if(0==m_refCount)
-        free(m_pointsBuffer);
 }
 
 
 void Polygon::DrawToDevice(int dev) const
 {
-    if(NULL==m_pointsBuffer)
-        m_pointsBuffer = (double*)malloc(m_pointCount*2*sizeof(double));
-    else
-        realloc(m_pointsBuffer, m_pointCount*2*sizeof(double));
-    
-    for( size_t i=0, j=0; i<m_pointCount; i++){
-        m_pointsBuffer[j++]=m_points[i].x;
-        m_pointsBuffer[j++]=m_points[i].y;
-    }
-    
+
+    CopyPointsToBuffer();
     switch(m_polyType) {
-        case NormalPoly:
-            g2_polygon(dev, m_pointCount, m_pointsBuffer);
+        case NORMAL_POLY:
+            g2_polygon(dev, m_numPoints, m_pointsBuffer);
             break;
-        case PolyLine:
-            g2_poly_line(dev, m_pointCount, m_pointsBuffer);
+        case POLY_LINE:
+            g2_poly_line(dev, m_numPoints, m_pointsBuffer);
             break;
-        case FilledPoly:
-            g2_poly_line(dev, m_pointCount, m_pointsBuffer);
+        case FILLED_POLY:
+            g2_poly_line(dev, m_numPoints, m_pointsBuffer);
             break;
     }
 }
 
-}
+} //namespace g2

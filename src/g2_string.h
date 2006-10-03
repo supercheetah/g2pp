@@ -26,7 +26,7 @@
 namespace g2 {
 
 /**
-	@author Rene Horn <the.rhorn@gmail.com>
+    @author Rene Horn <the.rhorn@gmail.com>
 */
 class g2_String : public Shape
 {

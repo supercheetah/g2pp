@@ -4,7 +4,6 @@ Source/library stuff:
    -> See g2_allocate_basic_colors, g2_clear_palette, and g2_reset_palette
  - Add physical device handles interface? (probably not)
    -> See g2_get_pd_handles
- - Add a Splines class
  - Doxygen documentation--lots of it.
 
 Package/Installation stuff:
