@@ -28,11 +28,9 @@ size_t MultiPointShape::m_refCount=0;
 double *MultiPointShape::m_pointsBuffer=NULL;
 
 MultiPointShape::MultiPointShape(int num_points, Point *points)
- : Shape()
+    : Shape(), m_points(new Point[num_points]), m_numPoints(num_points)
 {
-    m_points=new Point[num_points];
     memcpy(m_points, points, num_points*sizeof(double));
-    m_numPoints=num_points;
     m_refCount++;
 }
 

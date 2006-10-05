@@ -5,6 +5,7 @@ g2pp_SOURCES = g2pp.cpp
 INCLUDES= $(all_includes)
 
 # the library search path.
+g2pp_LDADD = $(top_builddir)/src/libg2++.la -lgd -lX11 -lg2
 g2pp_LDFLAGS = $(all_libraries) 
 lib_LTLIBRARIES = libg2++.la
 libg2___la_SOURCES = arc.cpp circle.cpp device.cpp ellipse.cpp mouse.cpp \
@@ -19,5 +20,5 @@ noinst_HEADERS = arc.h circle.h device.h ellipse.h mouse.h pen.h rectangle.h \
 			shape.h triangle.h g2_string.h line.h g2exception.h polygon.h g2++.h \
 			manipulator.h dashes.h fontsize.h quasipixelmanip.h background.h linewidth.h spline.h \
 	multipointshape.h
-g2pp_LDADD = $(top_builddir)/src/libg2++.la -lgd -lX11 -lg2
+
 
