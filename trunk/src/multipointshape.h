@@ -37,8 +37,8 @@ public:
 protected:
     virtual void DrawToDevice(int dev) const = 0;
     void CopyPointsToBuffer() const;
-    int m_numPoints;
-    Point *m_points;
+    const int m_numPoints;
+    Point *const m_points;
 
     static double *m_pointsBuffer;
     static size_t m_refCount;
