@@ -23,13 +23,8 @@ namespace g2 {
 
 Ellipse::Ellipse(double x, double y, double radiusX, double radiusY,
                  bool filled)
- : Shape()
+    : Shape(), m_point(x,y), m_radii(radiusX,radiusY), m_filled(filled)
 {
-    m_point.x=x;
-    m_point.y=y;
-    m_radii.x=radiusX;
-    m_radii.y=radiusY;
-    m_filled=filled;
 }
 
 
@@ -53,11 +48,8 @@ void Ellipse::DrawToDevice(int dev) const
     \fn g2::Ellipse::Ellipse(Point point, double radiusX, double radiusY, bool filled=false)
  */
  g2::Ellipse::Ellipse(Point point, double radiusX, double radiusY, bool filled)
+    :Shape(), m_point(point), m_radii(radiusX,radiusY), m_filled(filled)
 {
-    m_point=point;
-    m_radii.x=radiusX;
-    m_radii.y=radiusY;
-    m_filled=filled;
 }
 
 
@@ -65,8 +57,6 @@ void Ellipse::DrawToDevice(int dev) const
     \fn g2::Ellipse::Ellipse(Point point, Point radii, bool filled=false)
  */
  g2::Ellipse::Ellipse(Point point, Point radii, bool filled)
+    :Shape(), m_point(point), m_radii(radii), m_filled(filled)
 {
-    m_point=point;
-    m_radii=radii;
-    m_filled=filled;
 }

@@ -24,9 +24,8 @@
 namespace g2 {
     
 Polygon::Polygon(Point *points, size_t num_points, PolygonType poly_type)
- : MultiPointShape(num_points, points)
+    : MultiPointShape(num_points, points), m_polyType(poly_type)
 {
-    m_polyType=poly_type;
 }
 
 

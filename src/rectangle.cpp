@@ -22,13 +22,8 @@
 namespace g2 {
 
 Rectangle::Rectangle(double x1, double y1, double x2, double y2, bool filled)
- : Shape()
+    : Shape(), m_p1(x1,y1), m_p2(x2,y2), m_filled(filled)
 {
-    m_p1.x=x1;
-    m_p1.y=y1;
-    m_p2.x=x2;
-    m_p2.y=y2;
-    m_filled=filled;
 }
 
 
@@ -52,8 +47,6 @@ void Rectangle::DrawToDevice(int dev) const
     \fn g2::Rectangle::Rectangle(Point p1, Point p2, bool filled=false)
  */
  g2::Rectangle::Rectangle(Point p1, Point p2, bool filled)
+    :Shape(), m_p1(p1), m_p2(p2), m_filled(filled)
 {
-    m_p1=p1;
-    m_p2=p2;
-    m_filled=filled;
 }

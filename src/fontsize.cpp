@@ -24,6 +24,7 @@ namespace g2 {
 FontSize::FontSize()
  : Manipulator()
 {
+    /// @todo implement me
 }
 
 
@@ -36,4 +37,4 @@ void FontSize::Manipulate(int dev)
 {
 }
 
-}
+} //namespace g2

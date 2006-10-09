@@ -18,4 +18,6 @@ AC_HEADER_STDBOOL
 AC_CHECK_HEADERS(g2.h, ,AC_MSG_ERROR("libg2 header not found!  Get it here: http://g2.sourceforge.net/"))
 AC_HAVE_LIBRARY(g2, , AC_MSG_ERROR("libg2 not found!  Get it here: http://g2.sourceforge.net/"))
 
+AC_CHECK_FUNCS(strnlen)
+
 AC_OUTPUT(Makefile src/Makefile)

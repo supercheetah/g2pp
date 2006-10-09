@@ -23,15 +23,8 @@ namespace g2 {
 
 Triangle::Triangle(double x1, double y1, double x2, double y2, double x3, 
                    double y3, bool filled)
- : Shape()
+    : Shape(), m_p1(x1,y1), m_p2(x2,y2), m_p3(x3,y3), m_filled(filled)
 {
-    m_filled=filled;
-    m_p1.x=x1;
-    m_p2.x=x2;
-    m_p3.x=x3;
-    m_p1.y=y1;
-    m_p2.y=y2;
-    m_p3.y=y3;
 }
 
 
@@ -57,9 +50,6 @@ void Triangle::DrawToDevice(int dev) const
     \fn g2::Triangle::Triangle(Point p1, Point p2, Point p3, bool filled=false)
  */
  g2::Triangle::Triangle(Point p1, Point p2, Point p3, bool filled)
+    :Shape(), m_p1(p1), m_p2(p2), m_p3(p3), m_filled(filled)
 {
-    m_filled=filled;
-    m_p1=p1;
-    m_p2=p2;
-    m_p3=p3;
 }

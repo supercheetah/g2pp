@@ -23,15 +23,9 @@ namespace g2 {
 
 Arc::Arc(double x, double y, double radiusX, double radiusY, 
          double angle_start, double angle_end, bool filled)
- : Shape()
+    : Shape(), m_point(x,y), m_radii(radiusX,radiusY),
+      m_angle_start(angle_start), m_angle_end(angle_end), m_filled(filled)
 {
-    m_point.x=x;
-    m_point.y=y;
-    m_radii.x=radiusX;
-    m_radii.y=radiusY;
-    m_angle_start=angle_start;
-    m_angle_end=angle_end;
-    m_filled=filled;
 }
 
 
@@ -58,13 +52,9 @@ void Arc::DrawToDevice(int dev) const
  */
  g2::Arc::Arc(Point point, double radiusX, double radiusY, double angle_start, 
               double angle_end, bool filled)
+    :Shape(), m_point(point), m_radii(radiusX, radiusY), 
+     m_angle_start(angle_start), m_angle_end(angle_end), m_filled(filled)
 {
-    m_point=point;
-    m_radii.x=radiusX;
-    m_radii.y=radiusY;
-    m_angle_start=angle_start;
-    m_angle_end=angle_end;
-    m_filled=filled;
 }
 
 
@@ -73,10 +63,7 @@ void Arc::DrawToDevice(int dev) const
  */
  g2::Arc::Arc(Point point, Point radii, double angle_start, double angle_end, 
               bool filled)
+    :Shape(), m_point(point), m_radii(radii), m_angle_start(angle_start),
+     m_angle_end(angle_end), m_filled(filled)
 {
-    m_point=point;
-    m_radii=radii;
-    m_angle_start=angle_start;
-    m_angle_end=angle_end;
-    m_filled=filled;
 }

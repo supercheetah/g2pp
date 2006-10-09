@@ -43,7 +43,7 @@ public:
 
 protected:
     virtual void DrawToDevice(int dev) const;
-    PolygonType m_polyType;
+    const PolygonType m_polyType;
 
 };
 

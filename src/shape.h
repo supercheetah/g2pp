@@ -37,8 +37,11 @@ typedef enum
 
 struct Point
 {
-    inline Point(): ptype(NORMAL_PT) {}
-    inline Point(double x_, double y_) { x=x_; y=y_;}
+    inline Point(PointType pt=NORMAL_PT): ptype(pt) {}
+    inline Point(double x_, double y_, PointType pt=NORMAL_PT)
+        { x=x_; y=y_; ptype=pt;}
+    inline Point(const Point &p_, PointType pt=NORMAL_PT)
+        { x=p_.x; y=p_.y; ptype=pt;}
     double x, y;
     PointType ptype;
 };

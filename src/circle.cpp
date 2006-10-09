@@ -23,12 +23,8 @@
 namespace g2 {
 
 Circle::Circle(double x, double y, double radius, bool filled)
- : Shape()
+    : Shape(), m_point(x,y), m_radius(radius), m_filled(filled)
 {
-    m_point.x=x;
-    m_point.y=y;
-    m_radius=radius;
-    m_filled=filled;
 }
 
 
@@ -52,11 +48,8 @@ void Circle::DrawToDevice(int dev) const
     \fn g2::Circle::Circle(Point point, double radius, bool filled=false)
  */
  g2::Circle::Circle(Point point, double radius, bool filled)
+    :Shape(), m_point(point), m_radius(radius), m_filled(filled)
 {
-    m_point.x=point.x;
-    m_point.y=point.y;
-    m_radius=radius;
-    m_filled=filled;
 }
 
 
@@ -64,10 +57,9 @@ void Circle::DrawToDevice(int dev) const
     \fn g2::Circle::Circle(Point point, Point radial_point, bool filled=false)
  */
  g2::Circle::Circle(Point point, Point radial_point, bool filled)
+    :Shape(), m_point(point),
+     m_radius(sqrt(  pow(fabs(m_point.x - radial_point.x),2.0)
+                   + pow(fabs(m_point.y - radial_point.y),2.0))),
+     m_filled(filled)
 {
-    m_point.x=point.x;
-    m_point.y=point.y;
-    m_radius=sqrt(  pow(fabs(m_point.x - radial_point.x),2.0)
-                  + pow(fabs(m_point.y - radial_point.y),2.0));
-    m_filled=filled;
 }

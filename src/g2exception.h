@@ -48,8 +48,8 @@ public:
     const char* what();
 
 protected:
-    const char* m_message;
-    ExceptionValues m_type;
+    char * const m_message;
+    const ExceptionValues m_type;
 };
 
 }

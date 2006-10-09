@@ -24,9 +24,9 @@
 namespace g2 {
 
 g2exception::g2exception(const char *message, ExceptionValues exc_type)
+    :m_message(new char[strlen(message)]), m_type(exc_type)
 {
-    m_message = new char[strlen(message)];
-    m_type = exc_type;
+    strcpy(m_message, message);
 }
 
 

@@ -36,8 +36,8 @@ public:
 
 protected:
     virtual void Manipulate(int dev);
-    double m_size;
-    QPshape m_shape;
+    const double m_size;
+    const QPshape m_shape;
 };
 
 } //namespace g2

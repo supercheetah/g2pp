@@ -38,8 +38,8 @@ public:
 protected:
     virtual void DrawToDevice(int dev) const;
     
+    Point m_p1, m_p2;    
     double m_x1, m_y1, m_x2, m_y2;
-    Point m_p1, m_p2;
     bool m_filled;
 };
 

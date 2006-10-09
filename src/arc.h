@@ -41,9 +41,9 @@ public:
 
 protected:
     virtual void DrawToDevice(int dev) const;
-    double m_angle_start, m_angle_end;
-    Point m_point, m_radii;
-    bool m_filled;
+    const Point m_point, m_radii;
+    const double m_angle_start, m_angle_end;
+    const bool m_filled;
 };
 
 }
