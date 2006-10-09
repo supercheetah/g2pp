@@ -26,7 +26,7 @@
       <terminal>true</terminal>
       <directoryradio>executable</directoryradio>
       <runarguments>
-        <g2pp/>
+        <g2pp></g2pp>
       </runarguments>
       <customdirectory>/</customdirectory>
       <programargs/>
@@ -135,7 +135,7 @@
     <tree>
       <hidepatterns>*.o,*.lo,CVS</hidepatterns>
       <hidenonprojectfiles>false</hidenonprojectfiles>
-      <showvcsfields>false</showvcsfields>
+      <showvcsfields>true</showvcsfields>
     </tree>
   </kdevfileview>
   <kdevdocumentation>
