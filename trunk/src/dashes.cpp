@@ -24,11 +24,10 @@
 namespace g2 {
 
 Dashes::Dashes(int num_dash_lengths, double *dash_lengths)
- : Manipulator()
+    : Manipulator(), m_dashLengths(new double[num_dash_lengths]),
+      m_numDashLengths(num_dash_lengths)
 {
-    m_dashLengths=new double[num_dash_lengths];
     memcpy(m_dashLengths, dash_lengths, num_dash_lengths*sizeof(double));
-    m_numDashLengths=num_dash_lengths;
 }
 
 

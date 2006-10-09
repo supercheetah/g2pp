@@ -22,10 +22,8 @@
 namespace g2 {
 
 QuasiPixelManip::QuasiPixelManip(double size, QPshape shape)
- : Manipulator()
+    : Manipulator(), m_size(size), m_shape(shape)
 {
-    m_size=size;
-    m_shape=shape;
 }
 
 

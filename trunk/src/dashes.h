@@ -38,8 +38,8 @@ public:
 
 protected:
     virtual void Manipulate(int dev);
-    int m_numDashLengths;
-    double *m_dashLengths;
+    double * const m_dashLengths;
+    const int m_numDashLengths;
 };
 
 }

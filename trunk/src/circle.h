@@ -38,9 +38,9 @@ public:
 
 protected:
     virtual void DrawToDevice(int dev) const;
-    double m_radius;
-    Point m_point;
-    bool m_filled;
+    const Point m_point;
+    const double m_radius;
+    const bool m_filled;
 };
 
 }

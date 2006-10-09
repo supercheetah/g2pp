@@ -29,6 +29,7 @@ namespace g2 {
 */
 class FontSize : public Manipulator
 {
+    /// @todo implement me
 public:
     FontSize();
 

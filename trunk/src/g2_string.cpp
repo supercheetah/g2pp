@@ -19,18 +19,19 @@
  ***************************************************************************/
 #include "g2_string.h"
 #include <cstring>
-#ifdef _GNU_SOURCE
+#ifdef HAVE_CONFIG_H
+#  include <config.h>
+#endif
+#ifdef HAVE_STRNLEN
 #  include <climits> //useful for strnlen
 #endif
 
 namespace g2 {
 
 g2_String::g2_String(double x, double y, const char *text, bool filled)
- : Shape()
+    : Shape(), m_point(x,y)
 {
-    m_point.x=x;
-    m_point.y=y;
-#ifdef _GNU_SOURCE
+#ifdef HAVE_STRNLEN
     m_textLen=strnlen(text, UINT_MAX);
 #else
     m_textLen=strlen(text); //dangerous!
@@ -61,10 +62,8 @@ void g2_String::DrawToDevice(int dev) const
  */
  g2::g2_String::g2_String(double x, double y, const char *text, 
                           size_t textLength, bool filled)
+    :Shape(), m_point(x,y), m_textLen(textLength)
 {
-    m_point.x=x;
-    m_point.y=y;
-    m_textLen=textLength;
     m_text=new char[m_textLen];
     strncpy(m_text, text, m_textLen);
     
@@ -76,9 +75,9 @@ void g2_String::DrawToDevice(int dev) const
     \fn g2::g2_String::g2_String(Point point, const char *text, bool filled=false)
  */
  g2::g2_String::g2_String(Point point, const char *text, bool filled)
+    :Shape(), m_point(point)
 {
-    m_point=point;
-#ifdef _GNU_SOURCE
+#ifdef HAVE_STRNLEN
     m_textLen=strnlen(text, UINT_MAX);
 #else
     m_textLen=strlen(text); //dangerous!
@@ -95,25 +94,14 @@ void g2_String::DrawToDevice(int dev) const
  */
  g2::g2_String::g2_String(Point point, const char *text, size_t textLength,
                           bool filled)
+    :Shape(), m_point(point), m_textLen(textLength)
 {
     /// @todo implement me
-    m_point=point;
-    m_textLen=textLength;
     m_text=new char[m_textLen];
     strncpy(m_text, text, m_textLen);
     
     CommonInit();
 }
-
-
-/*!
-    \fn g2::g2_String::FontSize(double font_size)
- */
-void g2::g2_String::FontSize(double font_size)
-{
-    m_fontSize=font_size;
-}
-
 
 /*!
     \fn g2::g2_String::CommonInit()
