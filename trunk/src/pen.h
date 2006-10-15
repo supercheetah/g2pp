@@ -32,6 +32,7 @@ struct Ink
     int color;
     inline Ink(double r=0.0, double g=0.0, double b=0.0)
     {
+        color=-1;
         red=r;
         green=g;
         blue=b;
@@ -46,7 +47,7 @@ Device& operator>>(Device &din, Ink &ink) throw( g2exception );
     @author Rene Horn <the.rhorn@gmail.com>
 */
 class Pen{
-    friend void operator<<(Pen &pen, Ink &ink);
+    friend void operator<<(Pen &pen, Ink &ink) throw( g2exception );
     friend Device& operator<< (Device &dout, Pen &pen) throw( g2exception );
 public:
     Pen();
@@ -56,11 +57,11 @@ public:
 protected:
     Ink m_ink;
     bool m_isEmpty;
-};
+}; //class Pen
 
 Device& operator<< (Device &dout, Pen &pen) throw( g2exception );
 void operator<<(Pen &pen, Ink &ink);
 
-}
+} //namespace g2
 
 #endif
