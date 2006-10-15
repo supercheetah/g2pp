@@ -57,8 +57,11 @@ Device& operator<< (Device &dout, Pen &pen) throw( g2exception )
     return dout;
 }
 
-void operator<<(Pen &pen, Ink &ink)
+void operator<<(Pen &pen, Ink &ink) throw( g2exception )
 {
+    if(ink.color<0)
+        throw g2exception("Invalid ink color", INVALID_INK);
+    
     pen.m_ink=ink;
     pen.m_isEmpty=false;
 }
