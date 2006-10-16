@@ -20,9 +20,8 @@
 #ifndef G2DEVICE_H
 #define G2DEVICE_H
 
-#ifdef G2_USE_HASH_MAP
-#include <ext/hash_map>
-using __gnu_cxx::hash_map;
+#ifndef size_t
+typedef unsigned size_t;
 #endif
 
 #include <g2.h>
@@ -80,6 +79,8 @@ class Pen;
 class Manipulator;
 struct Ink;
 
+        
+
 /**
     @author Rene Horn <the.rhorn@gmail.com>
 */
@@ -120,11 +121,7 @@ public:
     void Flush();
     void Clear();
     void Save();
-#ifdef G2_USE_HASH_MAP
     static Device* LastUsed();
-#else
-    static int LastUsed();
-#endif
 
 #ifdef G2_USE_X11
      Device(int width, int height, int x, int y, char *window_name,
@@ -160,12 +157,8 @@ protected:
     DeviceType m_deviceType;
     bool m_isAutoflush;
     void CommonInit();
-#ifdef G2_USE_HASH_MAP
-    hash_map<int, Device*> m_deviceTracker;
-    const static bool m_trackAttached=true;
-#else
-    const static bool m_trackAttached=false;
-#endif
+    void *m_deviceTracker; //see VD_DT in device.cpp
+    static size_t m_refCount;
 }; //class Device
 
 } //namespace g2
