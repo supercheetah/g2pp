@@ -17,8 +17,12 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
+
 #include "device.h"
 #include "shape.h"
+
+#include <ext/hash_map>
+using __gnu_cxx::hash_map;
 
 #ifdef DEBUG
 #  include <cassert>
@@ -31,9 +35,16 @@ const char *DEVICETYPE_ERROR="DeviceType for this constructor can only be used"
                              " with ";
 
 namespace g2 {
+    
 
-#ifdef G2_USE_HASH_MAP
-hash_map<int, Device*> GlobalTracker;
+
+typedef hash_map<int, Device*> DeviceTracker;
+
+#define VD_DT static_cast<DeviceTracker*>(m_deviceTracker)
+
+DeviceTracker GlobalTracker;
+
+size_t Device::m_refCount=0;
 
 /*!
     \fn g2::Device::LastUsed()
@@ -42,15 +53,6 @@ Device* Device::LastUsed()
 {
     return GlobalTracker[g2_ld()];
 }
-#else
-/*!
-    \fn g2::Device::LastUsed()
- */
-int g2::Device::LastUsed()
-{
-    return g2_ld();
-}
-#endif
 
 #if defined G2_USE_FIG || defined G2_USE_PS
 Device::Device(const char *filename, DeviceType deviceType)
@@ -82,6 +84,9 @@ Device::Device(const char *filename, DeviceType deviceType)
 
 Device::~Device()
 {
+    m_refCount--;
+    if(VD==m_deviceType)
+        delete VD_DT;
     g2_close(m_device);
 }
 
@@ -190,6 +195,7 @@ Device::~Device()
 #endif
     m_deviceType = deviceType;
     m_device = g2_open_vd();
+    m_deviceTracker = new DeviceTracker;
 }
 
 
@@ -201,16 +207,13 @@ void g2::Device::Attach(Device &device) throw( g2exception )
     if(VD!=m_deviceType)
         throw g2exception("This is a non-virtual device--cannot attach.",
                           NONATTACHABLE_DEVICE);
-#ifdef G2_USE_HASH_MAP
-    if(m_trackAttached)
-        if(m_deviceTracker[device.m_device]!=&device)
-            throw g2exception("That device is already attached.", IS_ATTACHED);
-#endif
+
+    if((*VD_DT)[device.m_device]!=&device)
+        throw g2exception("That device is already attached.", IS_ATTACHED);
+    
     g2_attach(m_device, device.m_device);
-#ifdef G2_USE_HASH_MAP
-    if(m_trackAttached)
-        m_deviceTracker[device.m_device] = &device;
-#endif
+
+    (*VD_DT)[device.m_device] = &device;
 }
 
 /*!
@@ -221,17 +224,13 @@ void g2::Device::Detach(Device &device) throw( g2exception )
     if(VD!=m_deviceType)
         throw g2exception("This is a non-virtual device--nothing to detach.",
                           NONATTACHABLE_DEVICE);
-#ifdef G2_USE_HASH_MAP
-    if(m_trackAttached) {
-        if(m_deviceTracker[device.m_device]!=&device)
-            throw g2exception("That device is not attached.", NOT_ATTACHED);
-    }
-#endif
+
+    if((*VD_DT)[device.m_device]!=&device)
+        throw g2exception("That device is not attached.", NOT_ATTACHED);
+    
     g2_detach(m_device, device.m_device);
-#ifdef G2_USE_HASH_MAP
-    if(m_trackAttached)
-        m_deviceTracker.erase(device.m_device);
-#endif
+
+    VD_DT->erase(device.m_device);
 }
 
 
@@ -261,11 +260,10 @@ void g2::Device::MoveGraphicCursor(Point point)
  */
 void g2::Device::CommonInit()
 {
+    m_refCount++;
     m_isAutoflush=false;
-#ifdef G2_USE_HASH_MAP
-    if(m_trackAttached)
-        g2::GlobalTracker[m_device]=this;
-#endif
+
+    g2::GlobalTracker[m_device]=this;
 }
 
 

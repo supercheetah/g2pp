@@ -60,7 +60,7 @@ protected:
 }; //class Pen
 
 Device& operator<< (Device &dout, Pen &pen) throw( g2exception );
-void operator<<(Pen &pen, Ink &ink);
+void operator<<(Pen &pen, Ink &ink) throw( g2exception );
 
 } //namespace g2
 
