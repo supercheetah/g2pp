@@ -1,0 +1,1 @@
+This is a fully object-oriented C++ interface to the g2 graphical library, which can be obtained here: http://g2.sourceforge.net/
